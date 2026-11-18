@@ -1,0 +1,42 @@
+1. Clonar o projeto na pasta do XAMPP
+Abra o Git Bash e execute os comandos abaixo para baixar o repositório (o arquivo conexao.php já virá configurado):
+
+Bash
+cd /c/xampp/htdocs
+git clone https://github.com/JoaoSutile/gestao-academica.git
+cd gestao-academica
+2. Instalar as dependências do projeto (Composer)
+Ainda no Git Bash, dentro da pasta gestao-academica, rode o comando abaixo para gerar a pasta vendor/ com o driver PHP do MongoDB:
+
+Bash
+composer install
+(Se o Composer ainda não estiver instalado na máquina dele, basta baixar e instalar pelo site oficial: [https://getcomposer.org/Composer-Setup.exe](https://getcomposer.org/Composer-Setup.exe)).
+
+3. Ativar a extensão do MongoDB no XAMPP
+
+Baixe a DLL oficial do MongoDB para PHP em [https://pecl.php.net/package/mongodb](https://pecl.php.net/package/mongodb) (clique em DLL na versão estável mais recente e escolha o arquivo correspondente ao PHP do XAMPP — geralmente 8.2 Thread Safe (TS) x64).
+
+Extraia o arquivo zipado e copie apenas o php_mongodb.dll para dentro de C:\xampp\php\ext\.
+
+Abra o painel do XAMPP, clique em Config > PHP (php.ini) na linha do Apache, adicione a linha abaixo no final da lista de extensões e salve:
+
+Ini, TOML
+extension=mongodb
+4. Rodar o projeto no navegador
+
+No painel do XAMPP, clique em Start (ou Stop e Start, caso já estivesse rodando) no módulo Apache.
+
+Acesse http://localhost/gestao-academica no navegador.
+
+Como o banco está no MongoDB Atlas e a rede já está liberada, qualquer cadastro feito na máquina dele já será salvo e lido no mesmo banco compartilhado.
+
+5. Comandos para sincronizar alterações no Git
+
+Antes de começar a editar: git pull origin main
+
+Depois de finalizar uma tarefa:
+
+Bash
+git add .
+git commit -m "descricao clara do que foi alterado"
+git push origin main

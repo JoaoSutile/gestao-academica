@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'estado'      => strtoupper($_POST['estado'] ?? ''),
             'cep'         => $_POST['cep'] ?? ''
         ],
-        'criado_em'       => new MongoDB\BSON\UTCDateTime()
+        'criado_em' => new MongoDB\BSON\UTCDateTime()
     ];
 
     try {

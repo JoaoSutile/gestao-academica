@@ -1,3 +1,8 @@
+<?php
+require_once '../conexao.php';
+
+$estudantes = $banco->estudantes->find();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,6 +62,13 @@
 
                 <label for="nome" class="form-label">Telefone</label>
                 <input type="text" id="telefone" name="telefone" class="form-control" placeholder="Ex: (55) 12345-6789" required>
+            
+            </div>
+
+            <div class="col-md-6">
+
+                <label for="ra" class="form-label">RA / Matrícula</label>
+                <input type="text" id="ra" name="ra" class="form-control" placeholder="Ex: 2026001" required>
             
             </div>
 
@@ -125,6 +137,40 @@
         </div>
 
     </form>
+
+    <div class="card card-body shadow-sm border-0 mt-4">
+
+        <h4 class="mb-3 text-primary">Estudantes Cadastrados</h4>
+
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>CPF</th>
+                    <th>Telefone</th>
+                    <th>RA</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($estudantes as $estudante): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($estudante['nome'] ?? '') ?></td>
+                        <td><?= htmlspecialchars($estudante['e-mail'] ?? '') ?></td>
+                        <td><?= htmlspecialchars($estudante['cpf'] ?? '') ?></td>
+                        <td><?= htmlspecialchars($estudante['telefone'] ?? '') ?></td>
+                        <td><?= htmlspecialchars($estudante['ra'] ?? '') ?></td>
+                        <td>
+                            <a href="editar.php?id=<?= $estudante['_id'] ?>" class="btn btn-sm btn-warning">Editar</a>
+                            <a href="excluir.php?id=<?= $estudante['_id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Deseja realmente excluir este estudante?')">Excluir</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+
+    </div>
     
 </body>
 </html>

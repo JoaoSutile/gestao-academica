@@ -10,14 +10,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'cpf'             => $_POST['cpf'] ?? '',
         'data_nascimento' => $_POST['nomedtnascimento'] ?? '',
         'telefone'        => $_POST['telefone'] ?? '',
+        'ra'              => $_POST['ra'] ?? '',
         'endereco'        => [
-            'logradouro'  => $_POST['logradouro'] ?? '',
-            'numero'      => $_POST['numero'] ?? '',
-            'complemento' => $_POST['complemento'] ?? '',
-            'bairro'      => $_POST['bairro'] ?? '',
-            'cidade'      => $_POST['cidade'] ?? '',
-            'estado'      => strtoupper($_POST['estado'] ?? ''),
-            'cep'         => $_POST['cep'] ?? ''
+        'logradouro'  => $_POST['logradouro'] ?? '',
+        'numero'      => $_POST['numero'] ?? '',
+        'complemento' => $_POST['complemento'] ?? '',
+        'bairro'      => $_POST['bairro'] ?? '',
+        'cidade'      => $_POST['cidade'] ?? '',
+        'estado'      => strtoupper($_POST['estado'] ?? ''),
+        'cep'         => $_POST['cep'] ?? ''
         ],
         'criado_em' => new MongoDB\BSON\UTCDateTime()
     ];

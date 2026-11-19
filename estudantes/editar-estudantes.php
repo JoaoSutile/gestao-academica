@@ -6,7 +6,7 @@ use MongoDB\BSON\ObjectId;
 $colecao = $banco->estudantes;
 
 if (!isset($_GET['id']) || empty($_GET['id'])) {
-    header("Location: index.php");
+    header("Location: index-estudantes.php");
     exit;
 }
 
@@ -15,7 +15,7 @@ $id = $_GET['id'];
 try {
     $objectId = new ObjectId($id);
 } catch (Exception $e) {
-    header("Location: index.php");
+    header("Location: index-estudantes.php");
     exit;
 }
 
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         echo "<script>
                 alert('Estudante atualizado com sucesso!');
-                window.location.href = 'index.php';
+                window.location.href = 'index-estudantes.php';
               </script>";
         exit;
     } catch (Exception $e) {
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $estudante = $colecao->findOne(['_id' => $objectId]);
 
 if (!$estudante) {
-    header("Location: index.php");
+    header("Location: index-estudantes.php");
     exit;
 }
 ?>
@@ -138,7 +138,7 @@ if (!$estudante) {
                     </div>
 
                     <div class="d-flex justify-content-between">
-                        <a href="index.php" class="btn btn-secondary">Voltar</a>
+                        <a href="index-estudantes.php" class="btn btn-secondary">Voltar</a>
                         <button type="submit" class="btn btn-success">Salvar Alterações</button>
                     </div>
                 </form>

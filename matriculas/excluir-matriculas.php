@@ -6,5 +6,5 @@ if (isset($_GET['id'])) {
     $banco->matriculas->deleteOne(['_id' => $id]);
 }
 
-header('Location: index.php?msg=Matrícula cancelada com sucesso!');
+header('Location: index-matriculas.php?msg=Matrícula cancelada com sucesso!');
 exit;

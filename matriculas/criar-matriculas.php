@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ]);
 
     if ($jaExiste) {
-        header('Location: index.php?erro=Este estudante já está matriculado neste curso.');
+        header('Location: index-matriculas.php?erro=Este estudante já está matriculado neste curso.');
         exit;
     }
 
@@ -23,6 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'data_matricula' => date('d/m/Y')
     ]);
 
-    header('Location: index.php?msg=Matrícula realizada com sucesso!');
+    header('Location: index-matriculas.php?msg=Matrícula realizada com sucesso!');
     exit;
 }

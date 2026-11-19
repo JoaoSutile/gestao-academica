@@ -7,5 +7,5 @@ if (isset($_GET['id'])) {
     $banco->matriculas->deleteMany(['curso_id' => $id]);
 }
 
-header('Location: index.php?msg=Curso removido com sucesso!');
+header('Location: index-cursos.php?msg=Curso removido com sucesso!');
 exit;

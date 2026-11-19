@@ -4,7 +4,7 @@ require_once '../conexao.php';
 $estudantes = $banco->estudantes->find();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,13 +18,13 @@ $estudantes = $banco->estudantes->find();
         <div class="d-flex justify-content-between align-items-center mb-4">
 
             <h2>Cadastrar Estudante</h2>
-            <a href="../index.php" class="btn btn-outline-secondary">Voltar ao Menu</a>
+            <a href="../index-gestao_academica.php" class="btn btn-outline-secondary">Voltar ao Menu</a>
 
         </div>
 
     </div>
 
-    <form action="criar.php" method="POST" class="card card-body shadow-sm border-0">
+    <form action="criar-estudantes.php" method="POST" class="card card-body shadow-sm border-0">
 
         <h4 class="mb-3 text-primary">Dados Pessoais</h4>
 
@@ -39,28 +39,28 @@ $estudantes = $banco->estudantes->find();
 
             <div class="col-md-6">
 
-                <label for="nome" class="form-label">E-mail</label>
+                <label for="e-mail" class="form-label">E-mail</label>
                 <input type="email" id="e-mail" name="e-mail" class="form-control" placeholder="Ex: mariasilva@gmail.com" required>
             
             </div>
 
             <div class="col-md-6">
 
-                <label for="nome" class="form-label">CPF</label>
-                <input type="text" id="cpf" name="cpf" class="form-control" placeholder="Ex; 12345678901" required>
+                <label for="cpf" class="form-label">CPF</label>
+                <input type="text" id="cpf" name="cpf" class="form-control" placeholder="Ex: 12345678901" required>
             
             </div>
 
             <div class="col-md-6">
 
-                <label for="nome" class="form-label">Data de Nascimento</label>
+                <label for="nomedtnascimento" class="form-label">Data de Nascimento</label>
                 <input type="date" id="nomedtnascimento" name="nomedtnascimento" class="form-control" placeholder="Ex: 01/01/2000" required>
             
             </div>
 
             <div class="col-md-6">
 
-                <label for="nome" class="form-label">Telefone</label>
+                <label for="telefone" class="form-label">Telefone</label>
                 <input type="text" id="telefone" name="telefone" class="form-control" placeholder="Ex: (55) 12345-6789" required>
             
             </div>
@@ -132,7 +132,7 @@ $estudantes = $banco->estudantes->find();
         <div class="mt-4 d-flex gap-2">
 
             <button type="submit" class="btn btn-primary">Salvar Estudante</button>
-            <a href="index.php" class="btn btn-secondary">Cancelar</a>
+            <a href="index-estudantes.php" class="btn btn-secondary">Cancelar</a>
             
         </div>
 
@@ -157,13 +157,13 @@ $estudantes = $banco->estudantes->find();
                 <?php foreach ($estudantes as $estudante): ?>
                     <tr>
                         <td><?= htmlspecialchars($estudante['nome'] ?? '') ?></td>
-                        <td><?= htmlspecialchars($estudante['e-mail'] ?? '') ?></td>
+                        <td><?= htmlspecialchars($estudante['email'] ?? $estudante['e-mail'] ?? '') ?></td>
                         <td><?= htmlspecialchars($estudante['cpf'] ?? '') ?></td>
                         <td><?= htmlspecialchars($estudante['telefone'] ?? '') ?></td>
                         <td><?= htmlspecialchars($estudante['ra'] ?? '') ?></td>
                         <td>
-                            <a href="editar.php?id=<?= $estudante['_id'] ?>" class="btn btn-sm btn-warning">Editar</a>
-                            <a href="excluir.php?id=<?= $estudante['_id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Deseja realmente excluir este estudante?')">Excluir</a>
+                            <a href="editar-estudantes.php?id=<?= $estudante['_id'] ?>" class="btn btn-sm btn-warning">Editar</a>
+                            <a href="excluir-estudantes.php?id=<?= $estudante['_id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Deseja realmente excluir este estudante?')">Excluir</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

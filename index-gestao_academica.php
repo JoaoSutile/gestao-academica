@@ -10,7 +10,7 @@
     
     <div class="container my-5 text-center">
 
-          <h1 class="mb-4">Sistema de Gestão Acadêmica</h1>
+        <h1 class="mb-4">Sistema de Gestão Acadêmica</h1>
 
         <div class="row g-4 justify-content-center">
 
@@ -22,12 +22,12 @@
 
                         <div>
 
-                           <h3 class="card-title text-primary">Estudantes</h3>
-                        <p class="card-text text-secondary">Gerenciamento de alunos e endereços</p> 
+                            <h3 class="card-title text-primary">Estudantes</h3>
+                            <p class="card-text text-secondary">Gerenciamento de alunos e endereços</p> 
 
                         </div>
 
-                        <a href="estudantes/index.php" class="btn btn-primary w-100 mt-3">Acessar Estudantes</a>
+                        <a href="estudantes/index-estudantes.php" class="btn btn-primary w-100 mt-3">Acessar Estudantes</a>
 
                     </div>
 
@@ -48,7 +48,7 @@
 
                         </div>
 
-                        <a href="cursos/index.php" class="btn btn-primary w-100 mt-3">Acessar Cursos</a>
+                        <a href="cursos/index-cursos.php" class="btn btn-primary w-100 mt-3">Acessar Cursos</a>
 
                     </div>
 
@@ -69,7 +69,7 @@
 
                         </div>
 
-                        <a href="matriculas/index.php" class="btn btn-success w-100 mt-3">Acessar Matrículas</a>
+                        <a href="matriculas/index-matriculas.php" class="btn btn-success w-100 mt-3">Acessar Matrículas</a>
 
                     </div>
 

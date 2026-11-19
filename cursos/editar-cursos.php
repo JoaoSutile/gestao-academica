@@ -3,7 +3,7 @@ require_once '../conexao.php';
 
 $id = $_GET['id'] ?? $_POST['id'] ?? null;
 if (!$id) {
-    header('Location: index.php');
+    header('Location: index-cursos.php');
     exit;
 }
 
@@ -17,11 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'codigo'        => trim($_POST['codigo']),
             'carga_horaria' => (int) $_POST['carga_horaria'],
             'turno'         => trim($_POST['turno']),
+            'modalidade'    => trim($_POST['modalidade']),
             'coordenador'   => trim($_POST['coordenador'])
         ]]
     );
 
-    header('Location: index.php?msg=Curso atualizado com sucesso!');
+    header('Location: index-cursos.php?msg=Curso atualizado com sucesso!');
     exit;
 }
 
@@ -40,12 +41,12 @@ $curso = $banco->cursos->findOne(['_id' => $objectId]);
 <div class="container my-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="text-primary mb-0">Editar Curso</h2>
-        <a href="index.php" class="btn btn-outline-secondary">Cancelar</a>
+        <a href="index-cursos.php" class="btn btn-outline-secondary">Cancelar</a>
     </div>
 
     <div class="card shadow-sm border-0">
         <div class="card-body">
-            <form action="editar.php" method="POST" class="row g-3">
+            <form action="editar-cursos.php" method="POST" class="row g-3">
                 <input type="hidden" name="id" value="<?= $curso['_id'] ?>">
 
                 <div class="col-md-6">
@@ -63,7 +64,7 @@ $curso = $banco->cursos->findOne(['_id' => $objectId]);
                     <input type="number" id="carga_horaria" name="carga_horaria" class="form-control" value="<?= htmlspecialchars($curso['carga_horaria'] ?? '') ?>" required>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="turno" class="form-label">Turno</label>
                     <select id="turno" name="turno" class="form-select" required>
                         <?php foreach (['Matutino', 'Vespertino', 'Noturno', 'Integral'] as $t): ?>
@@ -72,7 +73,16 @@ $curso = $banco->cursos->findOne(['_id' => $objectId]);
                     </select>
                 </div>
 
-                <div class="col-md-8">
+                <div class="col-md-3">
+                    <label for="modalidade" class="form-label">Modalidade</label>
+                    <select id="modalidade" name="modalidade" class="form-select" required>
+                        <?php foreach (['Presencial', 'Semipresencial', 'EAD'] as $m): ?>
+                            <option value="<?= $m ?>" <?= ($curso['modalidade'] ?? '') === $m ? 'selected' : '' ?>><?= $m ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
                     <label for="coordenador" class="form-label">Coordenador(a)</label>
                     <input type="text" id="coordenador" name="coordenador" class="form-control" value="<?= htmlspecialchars($curso['coordenador'] ?? '') ?>" required>
                 </div>

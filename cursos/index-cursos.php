@@ -15,7 +15,7 @@ $cursos = $banco->cursos->find([], ['sort' => ['nome' => 1]]);
 <div class="container my-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="text-primary mb-0">Gerenciamento de Cursos</h2>
-        <a href="../index.php" class="btn btn-outline-secondary">Voltar ao Início</a>
+        <a href="../index-gestao_academica.php" class="btn btn-outline-secondary">Voltar ao Início</a>
     </div>
 
     <?php if (isset($_GET['msg'])): ?>
@@ -27,7 +27,7 @@ $cursos = $banco->cursos->find([], ['sort' => ['nome' => 1]]);
             <h5 class="mb-0">Cadastrar Novo Curso</h5>
         </div>
         <div class="card-body">
-            <form action="criar.php" method="POST" class="row g-3">
+            <form action="criar-cursos.php" method="POST" class="row g-3">
                 <div class="col-md-6">
                     <label for="nome" class="form-label">Nome do Curso</label>
                     <input type="text" id="nome" name="nome" class="form-control" placeholder="Ex: Análise e Desenvolvimento de Sistemas" required>
@@ -43,7 +43,7 @@ $cursos = $banco->cursos->find([], ['sort' => ['nome' => 1]]);
                     <input type="number" id="carga_horaria" name="carga_horaria" class="form-control" min="1" placeholder="Ex: 2400" required>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="turno" class="form-label">Turno</label>
                     <select id="turno" name="turno" class="form-select" required>
                         <option value="">Selecione...</option>
@@ -54,7 +54,17 @@ $cursos = $banco->cursos->find([], ['sort' => ['nome' => 1]]);
                     </select>
                 </div>
 
-                <div class="col-md-8">
+                <div class="col-md-3">
+                    <label for="modalidade" class="form-label">Modalidade</label>
+                    <select id="modalidade" name="modalidade" class="form-select" required>
+                        <option value="">Selecione...</option>
+                        <option value="Presencial">Presencial</option>
+                        <option value="Semipresencial">Semipresencial</option>
+                        <option value="EAD">EAD</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
                     <label for="coordenador" class="form-label">Coordenador(a)</label>
                     <input type="text" id="coordenador" name="coordenador" class="form-control" placeholder="Nome do coordenador responsável" required>
                 </div>
@@ -79,6 +89,7 @@ $cursos = $banco->cursos->find([], ['sort' => ['nome' => 1]]);
                             <th>Nome</th>
                             <th>Carga Horária</th>
                             <th>Turno</th>
+                            <th>Modalidade</th>
                             <th>Coordenador</th>
                             <th class="text-end">Ações</th>
                         </tr>
@@ -90,10 +101,11 @@ $cursos = $banco->cursos->find([], ['sort' => ['nome' => 1]]);
                                 <td><?= htmlspecialchars($curso['nome'] ?? '') ?></td>
                                 <td><?= htmlspecialchars($curso['carga_horaria'] ?? '') ?>h</td>
                                 <td><?= htmlspecialchars($curso['turno'] ?? '') ?></td>
+                                <td><?= htmlspecialchars($curso['modalidade'] ?? '-') ?></td>
                                 <td><?= htmlspecialchars($curso['coordenador'] ?? '') ?></td>
                                 <td class="text-end">
-                                    <a href="editar.php?id=<?= $curso['_id'] ?>" class="btn btn-sm btn-outline-primary">Editar</a>
-                                    <a href="excluir.php?id=<?= $curso['_id'] ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Deseja realmente excluir este curso?')">Excluir</a>
+                                    <a href="editar-cursos.php?id=<?= $curso['_id'] ?>" class="btn btn-sm btn-outline-primary">Editar</a>
+                                    <a href="excluir-cursos.php?id=<?= $curso['_id'] ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Deseja realmente excluir este curso?')">Excluir</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

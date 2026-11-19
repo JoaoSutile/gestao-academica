@@ -4,6 +4,7 @@ require_once '../conexao.php';
 $estudantes = $banco->estudantes->find([], ['sort' => ['nome' => 1]]);
 $cursos     = $banco->cursos->find([], ['sort' => ['nome' => 1]]);
 $matriculas = $banco->matriculas->find([], ['sort' => ['data_matricula' => -1]]);
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -18,7 +19,7 @@ $matriculas = $banco->matriculas->find([], ['sort' => ['data_matricula' => -1]])
 <div class="container my-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="text-success mb-0">Matrículas</h2>
-        <a href="../index.php" class="btn btn-outline-secondary">Voltar ao Início</a>
+        <a href="../index-gestao_academica.php" class="btn btn-outline-secondary">Voltar ao Início</a>
     </div>
 
     <?php if (isset($_GET['msg'])): ?>
@@ -34,7 +35,7 @@ $matriculas = $banco->matriculas->find([], ['sort' => ['data_matricula' => -1]])
             <h5 class="mb-0">Realizar Nova Matrícula</h5>
         </div>
         <div class="card-body">
-            <form action="criar.php" method="POST" class="row g-3">
+            <form action="criar-matriculas.php" method="POST" class="row g-3">
                 <div class="col-md-5">
                     <label for="estudante_id" class="form-label">Estudante</label>
                     <select id="estudante_id" name="estudante_id" class="form-select" required>
@@ -96,11 +97,12 @@ $matriculas = $banco->matriculas->find([], ['sort' => ['data_matricula' => -1]])
                             ?>
                             <tr>
                                 <td><?= htmlspecialchars($estudante['nome'] ?? 'Estudante removido') ?></td>
-                                <td><?= htmlspecialchars(($curso['codigo'] ?? '') . ($curso['nome'] ?? 'Curso removido')) ?></td>
+                                <td><?= htmlspecialchars(($curso['codigo'] ?? '') . ' - ' . ($curso['nome'] ?? 'Curso removido')) ?></td>
                                 <td><span class="badge bg-secondary"><?= htmlspecialchars($mat['semestre'] ?? '') ?></span></td>
                                 <td><?= htmlspecialchars($mat['data_matricula'] ?? '') ?></td>
                                 <td class="text-end">
-                                    <a href="excluir.php?id=<?= $mat['_id'] ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Cancelar esta matrícula?')">Cancelar</a>
+                                    <a href="editar-matriculas.php?id=<?= $mat['_id'] ?>" class="btn btn-sm btn-outline-warning">Editar</a>
+                                    <a href="excluir-matriculas.php?id=<?= $mat['_id'] ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Cancelar esta matrícula?')">Cancelar</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
